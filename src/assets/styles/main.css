@@ -1,0 +1,40 @@
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:not(i) {
+  font-family: ProximaNova-Regular;
+}
+
+/* @todo: move it in ui-kit  */
+.aui-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2c303b;
+}
+
+.aui-text-light {
+  color: #8893b3;
+}
+
+.aui-text-small {
+  font-size: 10px;
+  line-height: 18px;
+}
+
+.aui-text-caption {
+  font-family: ProximaNova-Semibold !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

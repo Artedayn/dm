@@ -1,0 +1,31 @@
+{{include "header.tmpl" .}}
+---
+image: webapp
+from: {{ env "K8S_QUAY_REGISTRY" }}/base-service-frontend-14:1.0.13
+docker:
+  ENV:
+    APPLICATION_NAME: webapp
+    WORK_MODE: webapp
+  WORKDIR: /srv
+git:
+  - add: /
+    to: /srv
+    excludePaths:
+      - .helm
+      - .werf
+      - build
+      - variables_values
+    stageDependencies:
+      install:
+        - package.json
+        - package-lock.json
+      beforeSetup:
+        - '**/*'
+shell:
+  install: |
+    cd /srv
+    npm config set registry http://nexus.action-media.ru/repository/npm-group/
+    npm ci
+  beforeSetup: |
+    cd /srv
+    npm run build
